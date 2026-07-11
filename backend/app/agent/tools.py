@@ -1,15 +1,4 @@
-"""
-LangGraph agent tools for the HCP Log Interaction module.
 
-Five tools are exposed to the agent:
-  1. log_interaction         - captures a free-text interaction, uses the LLM to
-                                summarize + extract entities, and persists a record.
-  2. edit_interaction        - modifies a previously logged interaction.
-  3. get_hcp_profile         - fetches HCP details + recent interaction history (context tool).
-  4. schedule_follow_up      - creates a follow-up reminder tied to an interaction.
-  5. suggest_next_best_action- LLM-generated talking points / product suggestions
-                                for the rep's next visit, grounded in interaction history.
-"""
 import json
 from datetime import datetime, timedelta
 from typing import Optional, List
