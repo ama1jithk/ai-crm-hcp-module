@@ -8,6 +8,7 @@ export default function ChatInterface() {
   const dispatch = useDispatch();
   const { messages, status } = useSelector((s) => s.chat);
   const { selectedHcpId } = useSelector((s) => s.hcps);
+  const repName = useSelector((s) => s.rep.name);
   const [input, setInput] = useState("");
   const bottomRef = useRef(null);
 
@@ -20,7 +21,7 @@ export default function ChatInterface() {
     if (!input.trim() || !selectedHcpId) return;
     const message = input;
     setInput("");
-    await dispatch(sendChatMessage({ message, hcpId: selectedHcpId, repName: "Field Rep" }));
+    await dispatch(sendChatMessage({ message, hcpId: selectedHcpId, repName: repName || "Field Rep" }));
     dispatch(fetchHcpHistory(selectedHcpId));
   };
 
@@ -60,6 +61,8 @@ export default function ChatInterface() {
 
       <form onSubmit={handleSend} className="border-t border-slate-100 p-3 flex gap-2">
         <input
+          id="chat-message-input"
+          name="chatMessage"
           className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm
                      focus:outline-none focus:ring-2 focus:ring-clinical-400"
           placeholder="Log or edit an interaction, or ask what to discuss next…"
