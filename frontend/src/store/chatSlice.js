@@ -19,7 +19,7 @@ const chatSlice = createSlice({
   name: "chat",
   initialState: {
     sessionId: nanoid(),
-    messages: [], // {role, content, toolCalls?}
+    messages: [], 
     status: "idle",
   },
   reducers: {
