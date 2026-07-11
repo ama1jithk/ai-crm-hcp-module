@@ -21,6 +21,7 @@ export default function StructuredForm() {
   const dispatch = useDispatch();
   const { selectedHcpId } = useSelector((s) => s.hcps);
   const { formStatus } = useSelector((s) => s.interactions);
+  const repName = useSelector((s) => s.rep.name);
   const [form, setForm] = useState(EMPTY);
 
   const set = (key) => (e) =>
@@ -35,7 +36,7 @@ export default function StructuredForm() {
     await dispatch(
       createInteraction({
         hcp_id: selectedHcpId,
-        rep_name: "Field Rep",
+        rep_name: repName || "Field Rep",
         channel: "form",
         interaction_type: form.interaction_type,
         summary: form.summary,
