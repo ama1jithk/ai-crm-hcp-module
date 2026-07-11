@@ -54,7 +54,7 @@ class Interaction(Base):
     summary = Column(Text, nullable=True)            # LLM generated summary
     topics_discussed = Column(JSON, default=list)    # entity extraction output
     products_discussed = Column(JSON, default=list)
-    sentiment = Column(String(50), nullable=True)    # positive / neutral / negative
+    sentiment = Column(String(50), nullable=True)   
     samples_provided = Column(JSON, default=list)
     follow_up_required = Column(Boolean, default=False)
     follow_up_notes = Column(Text, nullable=True)
@@ -74,7 +74,7 @@ class FollowUp(Base):
     hcp_id = Column(String(36), ForeignKey("hcps.id"), nullable=False)
     due_date = Column(DateTime, nullable=False)
     notes = Column(Text, nullable=True)
-    status = Column(String(50), default="pending")  # pending / done / cancelled
+    status = Column(String(50), default="pending")  
     created_at = Column(DateTime, default=datetime.utcnow)
 
 
@@ -83,7 +83,7 @@ class ChatMessage(Base):
 
     id = Column(String(36), primary_key=True, default=gen_uuid)
     session_id = Column(String(36), nullable=False, index=True)
-    role = Column(String(20), nullable=False)  # user / assistant / tool
+    role = Column(String(20), nullable=False)  
     content = Column(Text, nullable=False)
     tool_name = Column(String(100), nullable=True)
     tool_payload = Column(JSON, nullable=True)
