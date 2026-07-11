@@ -5,7 +5,7 @@ import ChatInterface from "./ChatInterface";
 import InteractionHistory from "./InteractionHistory";
 
 export default function LogInteractionScreen() {
-  const [mode, setMode] = useState("chat"); // "chat" | "form"
+  const [mode, setMode] = useState("chat"); 
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-8">
