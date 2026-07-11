@@ -14,13 +14,12 @@ router = APIRouter(prefix="/api/chat", tags=["Chat Agent"])
 def chat_with_agent(payload: schemas.ChatRequest, db: Session = Depends(get_db)):
     agent = get_agent()
 
-    # Persist the incoming user message
     db.add(models.ChatMessage(
         session_id=payload.session_id, role="user", content=payload.message,
     ))
     db.commit()
 
-    # Rebuild short-term conversation history for this session (last 20 messages)
+    
     history = (
         db.query(models.ChatMessage)
         .filter(models.ChatMessage.session_id == payload.session_id)
